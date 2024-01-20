@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const mysqlClient = require('../../shared/providers/mysql-client');
+const { db: mysqlClient } = require('../providers/mysql-client');
 
 const Starship = mysqlClient.define('Starship', {
     name: {
@@ -19,11 +19,11 @@ const Starship = mysqlClient.define('Starship', {
         allowNull: false
     },
     crew: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
     },
     passengers: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
     },
     cargo_capacity: {

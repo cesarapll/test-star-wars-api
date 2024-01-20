@@ -22,6 +22,14 @@ const translations = {
     ["release_date"]: "fecha_lanzamiento",
     ["characters"]: "personajes",
     ["planets"]: "planetas",
+    ["modlel"]: "modelo",
+    ["manufacturer"]: "fabricante",
+    ["cost_in_credits"]: "costo_en_creditos",
+    ["crew"]: "tripulacion",
+    ["passengers"]: "pasajeros",
+    ["cargo_capacity"]: "capacidad_carga",
+    ["consumables"]: "consumibles",
+    ["starship_class"]: "clase_nave",
 }
 
 

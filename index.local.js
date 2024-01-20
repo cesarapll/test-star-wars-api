@@ -1,6 +1,3 @@
-'use strict';
-const app = require('./src/app');
-const { connectDB } = require('./src/shared/providers/mysql-client');
 const path = require("path");
 require("dotenv").config({
     path: path.resolve(
@@ -8,10 +5,11 @@ require("dotenv").config({
         process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : ".env"
     ),
 });
+const app = require('./src/translator');
 
-console.log(process.env.DB_HOST)
+const { connectMySqlDB } = require('./src/shared/providers/mysql-client');
 
 app.listen(process.env.PORT, async () => {
-    await connectDB();
+    await connectMySqlDB();
     console.log('Server running on port 3000');
 });

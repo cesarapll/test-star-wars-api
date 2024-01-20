@@ -7,6 +7,17 @@ provider:
   stage: ${opt:stage, 'test'}
   region: us-east-2
   timeout: 10
+  environment:
+    # DB_NAME: ${env.DB_NAME, null}
+    # DB_USER: ${env.DB_USER, null}
+    # DB_PASS: ${env.DB_PASS, null}
+    # DB_HOST: ${env.DB_HOST, null}
+    # PORT: ${env.PORT, null}
+    DB_NAME: star_wars_db
+    DB_USER: root
+    DB_PASS: root
+    DB_HOST: "127.0.0.1"
+    PORT: 3000
 package:
   individually: true
   exclude:
@@ -18,13 +29,26 @@ package:
     - README.md
 
 functions:
-  translate:
-    handler: index.handler
+  translator:
+    handler: src/translator/index.handler
     timeout: 30
     events:
       - http:
-          path: /{proxy+}
-          method: GET
+          path: /translation/{proxy+}
+          method: get
+          cors:
+            origin: "*"
+            headers:
+              - Content-Type
+              - Authorization
+              - X-Timezone
+  starshipApp:
+    handler: src/starships-management/index.handler
+    timeout: 30
+    events:
+      - http:
+          path: /starships/{proxy+}
+          method: post
           cors:
             origin: "*"
             headers:

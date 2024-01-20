@@ -1,10 +1,10 @@
 const axios = require('axios')
 
 const starWarsApiClient = axios.create({
-    baseURL: 'https://swapi.py4e.com/api', 
+    baseURL: 'https://swapi.py4e.com/api',
     timeout: 30000,
     headers: {
-        'Content-Type': 'application/json', 
+        'Content-Type': 'application/json',
     },
 });
 

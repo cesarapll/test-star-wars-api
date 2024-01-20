@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:local": "nodemon -e js --exec \"cross-env NODE_ENV=local node index.local.js\"",
-    "deploy": "cross-env NODE_ENV=test serverless deploy --stage test"
+    "deploy": "cross-env NODE_ENV=test serverless deploy --stage test",
+    "start:test": "cross-env NODE_ENV=test serverless offline --stage test"
   },
   "dependencies": {
     "axios": "1.6.5",
