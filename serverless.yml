@@ -1,0 +1,35 @@
+service: test-star-wars-api
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: ${opt:stage, 'test'}
+  region: us-east-2
+  timeout: 10
+package:
+  individually: true
+  exclude:
+    - package-lock.json
+    - .github/**
+    - aws/**
+    - .env_template
+    - .env.*
+    - README.md
+
+functions:
+  translate:
+    handler: index.handler
+    timeout: 30
+    events:
+      - http:
+          path: /{proxy+}
+          method: GET
+          cors:
+            origin: "*"
+            headers:
+              - Content-Type
+              - Authorization
+              - X-Timezone
+plugins:
+  - serverless-offline
