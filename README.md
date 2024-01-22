@@ -28,3 +28,8 @@ Luego, debe ejecutar el comando `npm run deploy:dev` para empezar el proceso de 
 
 Nota: Se ha configurado el entorno de `development`. Se deben crear los archivos `.env.<entorno>` y modificar el archivo `package.json` para desplegar en otros entornos
 
+# Documentación
+
+Usar el path `/api-docs` para entrar a la documentación de Swagger
+
+Ejemplo: `http://localhost:3000/api-docs`

@@ -1,7 +1,7 @@
 "use strict";
 const serverless = require('serverless-http');
 
-
+const { swagger } = require('./swagger')
 const express = require("express");
 const cors = require('cors');
 const errorMiddleware = require("./src/shared/middlewares/errors.middleware");
@@ -27,7 +27,7 @@ app.use(errorMiddleware)
 
 const { connectMySqlDB } = require("./src/shared/providers/mysql-client");
 
-
+swagger(app);
 const handler = serverless(app)
 
 

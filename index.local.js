@@ -1,5 +1,6 @@
 "use strict";
 const path = require("path");
+
 require("dotenv").config({
     path: path.resolve(
         __dirname,
@@ -7,6 +8,7 @@ require("dotenv").config({
     ),
 });
 
+const { swagger } = require('./swagger')
 
 const express = require("express");
 const cors = require('cors');
@@ -38,4 +40,5 @@ connectMySqlDB();
 
 app.listen(process.env.PORT, () => {
     console.log(`Server listening on port ${process.env.PORT}`);
+    swagger(app);
 });
