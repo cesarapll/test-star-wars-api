@@ -4,10 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start:local": "nodemon -e js --exec \"cross-env NODE_ENV=local node index.local.js\"",
+    "start:test": "nodemon -e js --exec \"cross-env NODE_ENV=test node index.local.js\"",
     "deploy": "cross-env NODE_ENV=test serverless deploy --stage test",
-    "start:test": "cross-env NODE_ENV=test serverless offline --stage test"
+    "sls:test": "cross-env NODE_ENV=local SLS_DEBUG=* serverless offline start --stage test",
+    "invoke:local": "cross-env NODE_ENV=local serverless invoke local --function translator",
+    "deploy:test": "cross-env NODE_ENV=test serverless deploy --stage test"
   },
   "dependencies": {
     "axios": "1.6.5",

@@ -1,4 +1,5 @@
 "use strict";
+const serverless = require('serverless-http');
 const path = require("path");
 require("dotenv").config({
     path: path.resolve(
@@ -33,9 +34,17 @@ app.use(errorMiddleware)
 
 const { connectMySqlDB } = require("./src/shared/providers/mysql-client");
 
-console.log("Connecting to database...");
-connectMySqlDB();
 
-app.listen(process.env.PORT, () => {
-    console.log(`Server listening on port ${process.env.PORT}`);
-});
+const handler = serverless(app)
+
+
+module.exports.handler = async (event, context) => {
+    try {
+        console.log(event.pathParameters)
+        console.log("Connecting to database...")
+        await connectMySqlDB()
+        return handler(event, context)
+    } catch (error) {
+        console.error('Error connecting to database:', error)
+    }
+}
