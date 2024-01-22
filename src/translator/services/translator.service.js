@@ -10,6 +10,7 @@ const service = {
             const { data } = await starWarsApiClient.get(`/people/${id}`);
             return translateObject(data, translations)
         } catch (error) {
+            // Star Wars API throw its own 404 error
             if (error.response.status === 404) throw new NotFoundError("Person not found")
             else throw new InternalServerError("Error getting person")
         }
@@ -19,16 +20,15 @@ const service = {
             const { data } = await starWarsApiClient.get(`/films/${id}`);
             return translateObject(data, translations)
         } catch (error) {
+            // Star Wars API throw its own 404 error
             if (error.response.status === 404) throw new NotFoundError("Film not found")
             else throw new InternalServerError("Error getting film")
         }
     },
     getStarshipsTranslated: async () => {
-
         const starships = await Straship.findAll();
-        if (!starships) throw new NotFoundError("Starships not found")
+        if (!starships) return [];
         return starships.map(({ dataValues: starship }) => translateObject(starship, translations))
-
     }
 }
 

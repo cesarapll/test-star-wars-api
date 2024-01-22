@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const { db: mysqlClient } = require('../providers/mysql-client');
 
-const Starship = mysqlClient.define('Starship', {
+const Starship = mysqlClient.define('starships', {
     name: {
         type: DataTypes.STRING,
         allowNull: false

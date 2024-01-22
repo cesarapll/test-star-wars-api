@@ -22,7 +22,7 @@ const translations = {
     ["release_date"]: "fecha_lanzamiento",
     ["characters"]: "personajes",
     ["planets"]: "planetas",
-    ["modlel"]: "modelo",
+    ["model"]: "modelo",
     ["manufacturer"]: "fabricante",
     ["cost_in_credits"]: "costo_en_creditos",
     ["crew"]: "tripulacion",

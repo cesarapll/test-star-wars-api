@@ -5,22 +5,21 @@ useDotenv: true
 provider:
   name: aws
   runtime: nodejs18.x
-  stage: ${opt:stage, 'test'}
+  stage: ${opt:stage, 'development'}
   region: us-east-2
   timeout: 10
   environment:
-    DB_NAME: ${env.DB_NAME, null}
-    DB_USER: ${env.DB_USER, null}
-    DB_PASS: ${env.DB_PASS, null}
-    DB_HOST: ${env.DB_HOST, null}
+    DB_NAME: ${env.DB_NAME}
+    DB_USER: ${env.DB_USER}
+    DB_PASS: ${env.DB_PASS}
+    DB_HOST: ${env.DB_HOST}
 package:
   individually: true
   exclude:
     - package-lock.json
-    - .github/**
-    - aws/**
     - .env_template
     - README.md
+    - .env.*
 
 functions:
   app:
@@ -31,3 +30,8 @@ functions:
 
 plugins:
   - serverless-offline
+  - serverless-dotenv-plugin
+
+custom:
+  dotenv:
+    path: ./.env.${self:provider.stage}
